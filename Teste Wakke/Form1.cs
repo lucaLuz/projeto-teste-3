@@ -14,46 +14,15 @@ namespace Teste_Wakke
 {
     public partial class frm_inicio : Form
     {
-        string path = "BancoCadastro0.sdb";
-        string cs = @"URI=file:" + Application.StartupPath + "\\BancoCadastro0.sdb";
-
-
-        SQLiteConnection con;
-        SQLiteCommand cmd;
-        SQLiteDataReader dr;
 
         public frm_inicio()
         {
             InitializeComponent();
         }
 
-        private void data_show()
-        {
-            var con = new SQLiteConnection(cs);
-        }
-
         private void Cadastro_Load(object sender, EventArgs e)
         {
-            var con = new SQLiteConnection(cs);
-            con.Open();
 
-            var cmd = new SQLiteCommand(con);
-
-            try
-            {
-                cmd.CommandText = "DELETE FROM test where name =@Name";
-                cmd.Prepare();
-                cmd.Parameters.AddWithValue("@Name", name_txt.Text);
-
-                cmd.ExecuteNonQuery();
-                dt_formulario.Rows.Clear();
-                data_show();
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("cannot delete data");
-                return;
-            }
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -67,7 +36,7 @@ namespace Teste_Wakke
 
             if (form.ShowDialog() == DialogResult.OK)
             {
-                AddRows(form.Txdcid ,form.Rbativo ,form.Txtnome, form.Txtsobrenome ,form.Txtdata ,form.Txtaltura);
+                AddRows(form.Txdcid, form.Rbativo, form.Txtnome, form.Txtsobrenome, form.Txtdata, form.Txtaltura);
             }
 
 
@@ -101,12 +70,13 @@ namespace Teste_Wakke
             {
                 frm_cadastro form = new frm_cadastro();
 
-                form.Txdcid = dt_formulario.Rows[e.RowIndex].Cells[0].Value.ToString();
-                form.Rbativo = dt_formulario.Rows[e.RowIndex].Cells[2].Value;
+                form.Txdcid = dt_formulario.Rows[e.RowIndex].Cells[0].Value.GetHashCode();
+                form.Rbativo = dt_formulario.Rows[e.RowIndex].Cells[2].Value.Equals();
                 form.Txtnome = dt_formulario.Rows[e.RowIndex].Cells[2].Value.ToString();
                 form.Txtsobrenome = dt_formulario.Rows[e.RowIndex].Cells[3].Value.ToString();
                 form.Txtdata = dt_formulario.Rows[e.RowIndex].Cells[4].Value.ToString();
                 form.Txtaltura = dt_formulario.Rows[e.RowIndex].Cells[5].Value.ToString();
+
 
                 if (form.ShowDialog() == DialogResult.OK)
                 {

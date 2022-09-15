@@ -14,8 +14,7 @@ namespace Teste_Wakke
 {
     public partial class frm_cadastro : Form
     {
-        public virtual int RowIndex { get; }
-        public string Txdcid { get; set; }
+        public int Txdcid { get; set; }
         public bool Rbativo { get; set; }
         public string Txtnome { get; set; }
         public string Txtsobrenome { get; set; }
@@ -26,7 +25,7 @@ namespace Teste_Wakke
         {
             InitializeComponent();
         }
-
+            
         private void Label3_Click(object sender, EventArgs e)
         {
 
@@ -44,22 +43,20 @@ namespace Teste_Wakke
 
         private void btn_salvar_Click(object sender, EventArgs e)
         {
-            this.Txdcid = txd_cid.Text;
+            this.Txdcid = txd_cid.SelectionLength;
             this.Rbativo = rb_inativo.Checked;
             this.Rbativo = rb_ativo.Checked;
             this.Txtnome = Txt_nome.Text;
             this.Txtsobrenome = Txt_sobrenome.Text;
             this.Txtdata = txd_cdata.Text;
             this.Txtaltura = Txt_altura.Text;
-            this.DialogResult = DialogResult.OK;
-
 
             this.Close();
         }
 
         private void frm_cadastro_Load(object sender, EventArgs e)
         {
-            txd_cid.Text = this.Txdcid;
+            txd_cid.SelectionLength = this.Txdcid;
             rb_inativo.Checked = this.Rbativo;
             rb_ativo.Checked = this.Rbativo;
             Txt_nome.Text = this.Txtnome;

@@ -8,18 +8,12 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Teste_Wakke.Models;
 
 namespace Teste_Wakke
 {
     public partial class frm_cadastro : Form
     {
-        public int Txdcid { get; set; }
-        public bool Rbativo { get; set; }
-        public string Txtnome { get; set; }
-        public string Txtsobrenome { get; set; }
-        public string Txtdata { get; set; }
-        public string Txtaltura{ get; set; }
 
         public frm_cadastro()
         {
@@ -41,32 +35,33 @@ namespace Teste_Wakke
 
         }
 
-        private void btn_salvar_Click(object sender, EventArgs e)
+        private void Btn_salvar_Click(object sender, EventArgs e)
         {
-            this.Txdcid = txd_cid.SelectionLength;
-            this.Rbativo = rb_inativo.Checked;
-            this.Rbativo = rb_ativo.Checked;
-            this.Txtnome = Txt_nome.Text;
-            this.Txtsobrenome = Txt_sobrenome.Text;
-            this.Txtdata = txd_cdata.Text;
-            this.Txtaltura = Txt_altura.Text;
-
+            Usuario usuario = new Usuario();
+            usuario.Rbativo = rb_inativo.Text;
+            usuario.Rbativo = rb_ativo.Text;
+            usuario.Txtnome = Txt_nome.Text;
+            usuario.Txtsobrenome = Txt_sobrenome.Text;
+            usuario.Txtdata = txd_cdata.Text;
+            usuario.Txtaltura = Txt_altura.Text;
+            Banco.Add(usuario);
             this.Close();
         }
 
-        private void frm_cadastro_Load(object sender, EventArgs e)
+        private void Frm_cadastro_Load(object sender, EventArgs e)
         {
-            txd_cid.SelectionLength = this.Txdcid;
-            rb_inativo.Checked = this.Rbativo;
-            rb_ativo.Checked = this.Rbativo;
-            Txt_nome.Text = this.Txtnome;
-            Txt_sobrenome.Text = this.Txtsobrenome;
-            txd_cdata.Text = this.Txtdata;
-            Txt_altura.Text = this.Txtaltura;
-           
+            Usuario usuario = new Usuario();
+
+            rb_inativo.Text = usuario.Rbativo;
+            rb_ativo.Text = usuario.Rbativo;
+            Txt_nome.Text = usuario.Txtnome;
+            Txt_sobrenome.Text = usuario.Txtsobrenome;
+            txd_cdata.Text = usuario.Txtdata;
+            Txt_altura.Text = usuario.Txtaltura;
+
         }
 
-        private void txd_cid_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void Txd_cid_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
             
         }
@@ -76,7 +71,7 @@ namespace Teste_Wakke
 
         }
 
-        private void txd_cdata_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void Txd_cdata_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
 
         }
@@ -91,12 +86,12 @@ namespace Teste_Wakke
 
         }
 
-        private void rb_ativo_CheckedChanged(object sender, EventArgs e)
+        private void Rb_ativo_CheckedChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void rb_inativo_CheckedChanged(object sender, EventArgs e)
+        private void Rb_inativo_CheckedChanged(object sender, EventArgs e)
         {
 
         }

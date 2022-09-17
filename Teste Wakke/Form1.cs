@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SQLite;
+using Teste_Wakke.Models;
 
 namespace Teste_Wakke
 {
@@ -27,67 +28,62 @@ namespace Teste_Wakke
 
         private void button3_Click(object sender, EventArgs e)
         {
-            dt_formulario.SelectedRows.Clear();
+            int codigo = Convert.ToInt32(cl_id);
+            Banco.Delete(codigo);
         }
 
         private void btn_cadastro_Click(object sender, EventArgs e)
         {
-            frm_cadastro form = new frm_cadastro();
-
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                AddRows(form.Txdcid, form.Rbativo, form.Txtnome, form.Txtsobrenome, form.Txtdata, form.Txtaltura);
-            }
-
-
+            frm_cadastro cadastro = new frm_cadastro();
+            cadastro.ShowDialog();
         }
-
-        private void AddRows(string txdcid, bool rbativo, string txtnome, string txtsobrenome, string txtdata, string txtaltura)
-        {
-            dt_formulario.Rows.Add(txdcid, rbativo, txtnome, txtsobrenome, txtdata, txtaltura);
-            dt_formulario.Update();
-        }
-
-        public void EditRow(int idx, string txdcid, bool rbativo, string txtnome, string txtsobrenome, string txtdata, string txtaltura)
-        {
-            dt_formulario.Rows[idx].Cells[0].Value = txdcid;
-            dt_formulario.Rows[idx].Cells[1].Value = rbativo;
-            dt_formulario.Rows[idx].Cells[2].Value = txtnome;
-            dt_formulario.Rows[idx].Cells[3].Value = txtsobrenome;
-            dt_formulario.Rows[idx].Cells[4].Value = txtdata;
-            dt_formulario.Rows[idx].Cells[5].Value = txtaltura;
-
-        }
-
         private void Lbl_titulo_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void dt_formulario_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0 && !dt_formulario.Rows[e.RowIndex].IsNewRow)
-            {
-                frm_cadastro form = new frm_cadastro();
 
-                form.Txdcid = dt_formulario.Rows[e.RowIndex].Cells[0].Value.GetHashCode();
-                form.Rbativo = dt_formulario.Rows[e.RowIndex].Cells[2].Value.Equals();
-                form.Txtnome = dt_formulario.Rows[e.RowIndex].Cells[2].Value.ToString();
-                form.Txtsobrenome = dt_formulario.Rows[e.RowIndex].Cells[3].Value.ToString();
-                form.Txtdata = dt_formulario.Rows[e.RowIndex].Cells[4].Value.ToString();
-                form.Txtaltura = dt_formulario.Rows[e.RowIndex].Cells[5].Value.ToString();
+        /*rivate void dt_formulario_CellContentClick(object sender, DataGridViewCellEventArgs e)
+         {
+             RowIndex >= 0 && !dt_formulario.Rows[e.RowIndex].IsNewRow)
+               {
+                   Usuario usuario = new Usuario();
+                   DataGridViewRow row = this.dt_formulario.Rows[e.RowIndex];
+
+                   usuario.Txdcid = row.Cells[0].Value.GetHashCode();
+                   usuario.Rbativo = row.Cells[2].Value.Equals();
+                   usuario.Txtnome = row.Cells[2].Value.ToString();
+                   usuario.Txtsobrenome = row.Cells[3].Value.ToString();
+                   usuario.Txtdata = row.Cells[4].Value.ToString();
+                   usuario.Txtaltura = row.Cells[5].Value.ToString();
 
 
-                if (form.ShowDialog() == DialogResult.OK)
-                {
-                    EditRow(e.RowIndex, form.Txdcid, form.Rbativo, form.Txtnome, form.Txtsobrenome, form.Txtdata, form.Txtaltura);
-                }
-            }
-        }
+                   if (usuario.ShowDialog() == DialogResult.OK)
+                   {
+                       EditRow(e.RowIndex, usuario.Txdcid, usuario.Rbativo, usuario.Txtnome, usuario.Txtsobrenome, usuario.Txtdata, usuario.Txtaltura);
+                   }
+         }
+         }*/
 
         private void btn_editar_Click(object sender, EventArgs e)
         {
+            frm_cadastro cadastro = new frm_cadastro();
+            cadastro.ShowDialog();
+        }
 
+        private void dt_formulario_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && !dt_formulario.Rows[e.RowIndex].IsNewRow)
+            {
+                Usuario usuario = new Usuario();
+                DataGridViewRow row = this.dt_formulario.Rows[e.RowIndex];
+
+                usuario.Rbativo = Convert.ToString(row.Cells[1]);
+                usuario.Txtnome = row.Cells[2].Value.ToString();
+                usuario.Txtsobrenome = row.Cells[3].Value.ToString();
+                usuario.Txtdata = Convert.ToString(row.Cells[4]);
+                usuario.Txtaltura = Convert.ToString(row.Cells[5]);
+            }
         }
     }
 }

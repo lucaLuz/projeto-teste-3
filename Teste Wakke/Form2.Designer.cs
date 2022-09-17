@@ -42,7 +42,7 @@ namespace Teste_Wakke
             this.rb_inativo = new System.Windows.Forms.RadioButton();
             this.btn_salvar = new System.Windows.Forms.Button();
             this.txd_cdata = new System.Windows.Forms.MaskedTextBox();
-            this.txd_cid = new System.Windows.Forms.MaskedTextBox();
+            this.txd_id = new System.Windows.Forms.MaskedTextBox();
             this.Txt_nome = new System.Windows.Forms.TextBox();
             this.Txt_sobrenome = new System.Windows.Forms.TextBox();
             this.Txt_altura = new System.Windows.Forms.TextBox();
@@ -132,7 +132,7 @@ namespace Teste_Wakke
             this.rb_ativo.TabStop = true;
             this.rb_ativo.Text = "ativo";
             this.rb_ativo.UseVisualStyleBackColor = true;
-            this.rb_ativo.CheckedChanged += new System.EventHandler(this.rb_ativo_CheckedChanged);
+            this.rb_ativo.CheckedChanged += new System.EventHandler(this.Rb_ativo_CheckedChanged);
             // 
             // rb_inativo
             // 
@@ -144,7 +144,7 @@ namespace Teste_Wakke
             this.rb_inativo.TabStop = true;
             this.rb_inativo.Text = "inativo";
             this.rb_inativo.UseVisualStyleBackColor = true;
-            this.rb_inativo.CheckedChanged += new System.EventHandler(this.rb_inativo_CheckedChanged);
+            this.rb_inativo.CheckedChanged += new System.EventHandler(this.Rb_inativo_CheckedChanged);
             // 
             // btn_salvar
             // 
@@ -158,7 +158,7 @@ namespace Teste_Wakke
             this.btn_salvar.TabIndex = 14;
             this.btn_salvar.Text = "salvar";
             this.btn_salvar.UseVisualStyleBackColor = false;
-            this.btn_salvar.Click += new System.EventHandler(this.btn_salvar_Click);
+            this.btn_salvar.Click += new System.EventHandler(this.Btn_salvar_Click);
             // 
             // txd_cdata
             // 
@@ -170,19 +170,19 @@ namespace Teste_Wakke
             this.txd_cdata.Size = new System.Drawing.Size(194, 23);
             this.txd_cdata.TabIndex = 15;
             this.txd_cdata.ValidatingType = typeof(System.DateTime);
-            this.txd_cdata.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.txd_cdata_MaskInputRejected);
+            this.txd_cdata.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.Txd_cdata_MaskInputRejected);
             // 
-            // txd_cid
+            // txd_id
             // 
-            this.txd_cid.BackColor = System.Drawing.Color.SeaShell;
-            this.txd_cid.ForeColor = System.Drawing.Color.DarkRed;
-            this.txd_cid.Location = new System.Drawing.Point(23, 108);
-            this.txd_cid.Mask = "00000";
-            this.txd_cid.Name = "txd_cid";
-            this.txd_cid.Size = new System.Drawing.Size(140, 23);
-            this.txd_cid.TabIndex = 16;
-            this.txd_cid.ValidatingType = typeof(int);
-            this.txd_cid.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.txd_cid_MaskInputRejected);
+            this.txd_id.BackColor = System.Drawing.Color.SeaShell;
+            this.txd_id.ForeColor = System.Drawing.Color.DarkRed;
+            this.txd_id.Location = new System.Drawing.Point(23, 108);
+            this.txd_id.Mask = "00000";
+            this.txd_id.Name = "txd_id";
+            this.txd_id.Size = new System.Drawing.Size(140, 23);
+            this.txd_id.TabIndex = 16;
+            this.txd_id.ValidatingType = typeof(int);
+            this.txd_id.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.Txd_cid_MaskInputRejected);
             // 
             // Txt_nome
             // 
@@ -223,7 +223,7 @@ namespace Teste_Wakke
             this.Controls.Add(this.Txt_altura);
             this.Controls.Add(this.Txt_sobrenome);
             this.Controls.Add(this.Txt_nome);
-            this.Controls.Add(this.txd_cid);
+            this.Controls.Add(this.txd_id);
             this.Controls.Add(this.txd_cdata);
             this.Controls.Add(this.btn_salvar);
             this.Controls.Add(this.rb_inativo);
@@ -242,7 +242,7 @@ namespace Teste_Wakke
             this.Name = "frm_cadastro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro";
-            this.Load += new System.EventHandler(this.frm_cadastro_Load);
+            this.Load += new System.EventHandler(this.Frm_cadastro_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -261,7 +261,7 @@ namespace Teste_Wakke
         private System.Windows.Forms.RadioButton rb_inativo;
         private System.Windows.Forms.Button btn_salvar;
         private System.Windows.Forms.MaskedTextBox txd_cdata;
-        private System.Windows.Forms.MaskedTextBox txd_cid;
+        private System.Windows.Forms.MaskedTextBox txd_id;
         private System.Windows.Forms.TextBox Txt_nome;
         private System.Windows.Forms.TextBox Txt_sobrenome;
         private System.Windows.Forms.TextBox Txt_altura;

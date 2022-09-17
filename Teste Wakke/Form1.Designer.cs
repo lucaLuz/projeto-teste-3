@@ -175,7 +175,7 @@
             this.dt_formulario.Size = new System.Drawing.Size(769, 353);
             this.dt_formulario.TabIndex = 7;
             this.dt_formulario.TabStop = false;
-            this.dt_formulario.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dt_formulario_CellContentClick);
+            this.dt_formulario.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dt_formulario_CellClick);
             // 
             // cl_id
             // 

@@ -18,7 +18,7 @@ namespace Teste_Wakke.Models
 
         private static SQLiteConnection DbConnection()
         {
-            sqliteConnection = new SQLiteConnection("Data Source=c:\\dados\\BancoWakke.db; Version=3;");
+            sqliteConnection = new SQLiteConnection("Data Source=c:\\BancoWakke.db; Version=3;");
             sqliteConnection.Open();
             return sqliteConnection;
         }
@@ -27,30 +27,13 @@ namespace Teste_Wakke.Models
         {
             try
             {
-                SQLiteConnection.CreateFile(@"c:\dados\BancoWakke.db");
+                SQLiteConnection.CreateFile(@"c:\BancoWakke.db");
             }
             catch
             {
                 throw;
             }
         }
-
-        public static void CriarTabelaSQlite()
-        {
-            try
-            {
-                using (var cmd = DbConnection().CreateCommand())
-                {
-                    cmd.CommandText = "CREATE TABLE IF NOT EXISTS usuario(id int, Nome Varchar(50), email VarChar(80))";
-                    cmd.ExecuteNonQuery();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
 
         public static DataTable GetUsuarios()
         {
@@ -78,12 +61,12 @@ namespace Teste_Wakke.Models
             {
                 using (var cmd = DbConnection().CreateCommand())
                 {
-                    cmd.CommandText = "INSERT INTO usuario(id, Nome, email ) values (@id, @nome, @email)";
+                    cmd.CommandText = "INSERT INTO usuario(ID, ativo, nome, sobrenome, data de nascimento, altura) values (@ID, @ativo, @nome, @sobrenome, @data de nascimento)";
                     cmd.Parameters.AddWithValue("@ID", usuario.Txdcid);
                     cmd.Parameters.AddWithValue("@ativo", usuario.Rbativo);
                     cmd.Parameters.AddWithValue("@nome", usuario.Txtnome);
                     cmd.Parameters.AddWithValue("@sobrenome", usuario.Txtsobrenome);
-                    cmd.Parameters.AddWithValue("@data", usuario.Txtdata);
+                    cmd.Parameters.AddWithValue("@data de nascimento", usuario.Txtdata);
                     cmd.Parameters.AddWithValue("@altura", usuario.Txtaltura);
                     cmd.ExecuteNonQuery();
                 }
@@ -100,7 +83,7 @@ namespace Teste_Wakke.Models
             {
                 using (var cmd = new SQLiteCommand(DbConnection()))
                 {
-                    cmd.CommandText = "UPDATE usuario SET Nome=@Nome, Email=@Email WHERE Id=@Id";
+                    cmd.CommandText = "UPDATE usuario SET ativo=@ativo, nome=@nome, sobrenome=@sobrenome, data de nascimento=@data de nascimento, altura=@altura WHERE ID=@ID";
                     cmd.Parameters.AddWithValue("@ID", usuario.Txdcid);
                     cmd.Parameters.AddWithValue("@ativo", usuario.Rbativo);
                     cmd.Parameters.AddWithValue("@nome", usuario.Txtnome);
@@ -122,7 +105,7 @@ namespace Teste_Wakke.Models
             {
                 using (var cmd = new SQLiteCommand(DbConnection()))
                 {
-                    cmd.CommandText = "DELETE usuario SET Nome=@Nome, Email=@Email WHERE Id=@Id";
+                    cmd.CommandText = "DELETE usuario SET ID=ID, ativo=@ativo, nome=@nome, sobrenome=@sobrenome, data de nascimento=@data de nascimento, altura=@altura";
                     cmd.Parameters.AddWithValue("@ID", usuario.Txdcid);
                     cmd.Parameters.AddWithValue("@ativo", usuario.Rbativo);
                     cmd.Parameters.AddWithValue("@nome", usuario.Txtnome);

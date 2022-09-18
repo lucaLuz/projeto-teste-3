@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Teste_Wakke.Models
 {
-    public class Usuario
+    public class frm_cadastro
     {
         public string Txdcid { get; set; }
         public string Rbativo { get; set; }

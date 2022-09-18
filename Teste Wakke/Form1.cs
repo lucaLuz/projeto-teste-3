@@ -23,13 +23,14 @@ namespace Teste_Wakke
 
         private void Cadastro_Load(object sender, EventArgs e)
         {
-
+            Banco banco = new Banco();
+            banco.Create_db();
+            /*banco.data_show();*/
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            int codigo = Convert.ToInt32(cl_id);
-            Banco.Delete(codigo);
+
         }
 
         private void btn_cadastro_Click(object sender, EventArgs e)
@@ -75,14 +76,15 @@ namespace Teste_Wakke
         {
             if (e.RowIndex >= 0 && !dt_formulario.Rows[e.RowIndex].IsNewRow)
             {
-                Usuario usuario = new Usuario();
-                DataGridViewRow row = this.dt_formulario.Rows[e.RowIndex];
+                Models.frm_cadastro usuario = new Models.frm_cadastro();
+                DataGridViewRow row = dt_formulario.Rows[e.RowIndex];
+                usuario = new Models.frm_cadastro();
 
-                usuario.Rbativo = Convert.ToString(row.Cells[1]);
+                usuario.Rbativo = Convert.ToString(row.Cells[1].Value);
                 usuario.Txtnome = row.Cells[2].Value.ToString();
                 usuario.Txtsobrenome = row.Cells[3].Value.ToString();
-                usuario.Txtdata = Convert.ToString(row.Cells[4]);
-                usuario.Txtaltura = Convert.ToString(row.Cells[5]);
+                usuario.Txtdata = Convert.ToString(row.Cells[4].Value);
+                usuario.Txtaltura = Convert.ToString(row.Cells[5].Value);
             }
         }
     }
